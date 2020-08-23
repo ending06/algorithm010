@@ -11,24 +11,20 @@ public class KuoHaoValid {
 
     public static boolean isValid(String s) {
         int n = s.length();
-
-        //非成对出现
         if (n % 2 == 1) {
             return false;
         }
 
-        final Map<Character, Character> pairs = new HashMap<Character, Character>() {{
+        Map<Character, Character> pairs = new HashMap<Character, Character>() {{
             put(')', '(');
             put(']', '[');
             put('}', '{');
         }};
-
-        LinkedList<Character> stack = new LinkedList<Character>();
-
+        Deque<Character> stack = new LinkedList<Character>();
         for (int i = 0; i < n; i++) {
             char ch = s.charAt(i);
             if (pairs.containsKey(ch)) {
-                if (stack.isEmpty() || !stack.peek().equals(pairs.get(ch))) {
+                if (stack.isEmpty() || stack.peek() != pairs.get(ch)) {
                     return false;
                 }
                 stack.pop();
@@ -40,7 +36,7 @@ public class KuoHaoValid {
     }
 
     public static void main(String[] args) {
-        String ss = "()[]{}";
+        String ss = "()";
         System.out.println("====>"+isValid(ss));
     }
 }
