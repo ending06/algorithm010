@@ -5,6 +5,8 @@
 //  <p>@author ruirui.qu Initial Created at 2020-08-16</p>
 //-------------------------------------------------------
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
@@ -29,7 +31,7 @@ public class LadderLength {
         int N = wordList.size();
         List<Integer>[] graphic = new List[N];
         for (int i = 0; i < N; i++) {
-            graphic[i] = new ArrayList<>();
+            graphic[i] = new ArrayList<Integer>();
             for (int j = 0; j < N; j++) {
                 if (isConnect(wordList.get(i), wordList.get(j))) {
                     graphic[i].add(j);
@@ -51,7 +53,7 @@ public class LadderLength {
     }
 
     private int getShortestPath(List<Integer>[] graphic, int start, int end) {
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<Integer>();
         boolean[] marked = new boolean[graphic.length];
         queue.add(start);
         marked[start] = true;
